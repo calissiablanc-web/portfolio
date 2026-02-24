@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #FF6B6B;
+            --color-secondary: #4ECDC4;
+            --color-accent: #FFE66D;
+            --color-purple: #A8E6CF;
+            --color-blue: #c67070;
+            --color-orange: #FFA07A;
+            --color-dark: #2C3E50;
+            --color-light: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(198, 112, 112, 0.1);
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #C41E3A;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #C41E3A;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #C41E3A;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: fixed;
+            top: 22px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(196, 30, 58, 0.9);
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background: #C41E3A;
+            transform: translateX(-5px);
+        }
+
+        /* Container général */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        /* Accueil */
+        #accueil {
+            margin-top: 0;
+            padding-top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-image: url('Pages/Capture d’écran 2026-01-31 à 11.46.28.png');
+            color: #2C3E50;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #2C3E50;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #E63946 0%, #C41E3A 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Titres de section */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            color: #C41E3A;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: #C41E3A;
+            border-radius: 3px;
+        }
+
+        /* À Propos */
+        #apropos {
+            background: linear-gradient(135deg, #C41E3A 0%, #D6304A 100%);
+            color: white;
+        }
+
+        #apropos .section-title {
+            color: white;
+        }
+
+        #apropos .section-title::after {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Projets - Vue grille */
+        #projets {
+            background: #F1F1F1;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #C41E3A;
+            margin-bottom: 1rem;
+        }
+
+        .project-content p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .voir-projet {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #E63946 0%, #C41E3A 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .voir-projet:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+        }
+
+        /* Page de projet individuel */
+        .project-page {
+            display: none;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .project-page.active {
+            display: block;
+        }
+
+        .project-hero {
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .project-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-detail-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .project-detail-header {
+            margin-bottom: 60px;
+        }
+
+        .project-detail-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #C41E3A;
+            margin-bottom: 30px;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .project-meta h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #C41E3A;
+            font-weight: 600;
+        }
+
+        .project-meta p,
+        .project-meta a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .project-meta a:hover {
+            color: #C41E3A;
+            text-decoration: underline;
+        }
+
+        /* Vidéo YouTube dans la page projet */
+        .youtube-video {
+            width: 100%;
+            margin: 40px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .youtube-video iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        /* Galerie d'images du projet */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-row img {
+    width: 100%;
+    height: auto;  /* Au lieu de 400px */
+    object-fit: contain;  /* Au lieu de cover */
+    border-radius: 8px;
+}
+
+        /* Compétences */
+        .skills-parcours {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .skills-section h3,
+        .parcours-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #C41E3A;
+            margin-bottom: 2rem;
+        }
+
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category h4 {
+            font-size: 1.2rem;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #E63946 0%, #C41E3A 100%);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #E63946, #C41E3A);
+        }
+
+        .timeline-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #C41E3A;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #C41E3A;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.3rem;
+            color: #C41E3A;
+            margin-bottom: 0.5rem;
+        }
+
+        .period {
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-item p:not(.period) {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Contact */
+        #contact {
+            background: linear-gradient(135deg, #E63946 0%, #C41E3A 100%);
+            color: white;
+            min-height: unset;
+            padding: 60px 0 50px;
+        }
+
+        #contact .section-title {
+            color: white;
+        }
+
+        #contact .section-title::after {
+            background: white;
+        }
+
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: nowrap;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-item i {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            text-align: center;
+            padding: 0.8rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-parcours {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .gallery-row {
+                grid-template-columns: 1fr;
+            }
+
+            .project-detail-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .back-button {
+                left: 20px;
+                top: 20px;
+            }
+
+            .youtube-video iframe {
+                height: 300px;
+            }
+        }
+
+        /* Système de navigation projets via :target */
+        .project-page {
+            display: none !important;
+        }
+
+        .project-page:target {
+            display: block !important;
+        }
+
+        /* Quand un projet est ciblé, cacher le reste */
+        body:has(.project-page:target) #accueil,
+        body:has(.project-page:target) #apropos,
+        body:has(.project-page:target) #projets,
+        body:has(.project-page:target) #competences,
+        body:has(.project-page:target) #contact,
+        body:has(.project-page:target) footer {
+            display: none !important;
+        }
+
+        body:has(.project-page:target) .back-button {
+            display: block !important;
+        }
+
+        /* Espacement logo et retour sur pages projet */
+        body:has(.project-page:target) .logo {
+            margin-left: 160px;
+        }
+
+        /* Cacher les sections principales via classe JS aussi */
+        body.viewing-project #accueil,
+        body.viewing-project #apropos,
+        body.viewing-project #projets,
+        body.viewing-project #competences,
+        body.viewing-project #contact,
+        body.viewing-project footer {
+            display: none !important;
+        }
+
+        body.viewing-project .project-page.active {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a class="logo" href="#accueil" style="text-decoration:none;">Calissia Blanc</a>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bouton retour -->
+    <a class="back-button" id="backButton" href="#">← Retour</a>
+
+    <!-- Accueil -->
+    <section id="accueil">
+        <div class="hero-content">
+            <h1></h1>
+            <p class="tagline"></p>
+        </div>
+    </section>
+
+    <!-- À Propos -->
+    <section id="apropos">
+        <div class="container">
+            <h2 class="section-title">À Propos</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Tout a commencé à 8 ans, devant un film de Charlie Chaplin. C'est là que je suis tombée amoureuse du cinéma, fascinée par cette capacité à raconter, faire rire et émouvoir sans un mot. Quelques années plus tard, à 12 ans, j'ai pris mon premier appareil photo pour capturer des portraits, et je n'ai jamais arrêté depuis.</p>
+                    <p>Formée en spécialité cinéma au lycée, j'ai réalisé deux films et développé un goût particulier pour le travail derrière la caméra — la direction artistique, la scénographie, les détails de décor qui donnent vie à une scène. Ce qui me guide dans chaque projet, c'est cette volonté de créer des images simples mais chargées d'émotion, où chaque image raconte quelque chose.</p>
+                    <p>Au-delà du cinéma et de la photo, j'expérimente d'autres formes d'expression artistique sur mon temps libre. Tout ce que je crée part du même endroit : le désir de provoquer une émotion, de toucher les gens, de leur offrir un instant qui résonne en eux.</p>
+                </div>
+                <div class="about-image">
+                    <img src="Tournage/shooting-3.jpg" alt="Creative workspace">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets - Vue grille -->
+    <section id="projets">
+        <div class="container">
+            <h2 class="section-title">Mes Projets</h2>
+            <div class="projects-grid">
+                
+                <!-- Projet 1 - Nivea -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="nivea/accueil.png" alt="Nivea">
+                    </div>
+                    <div class="project-content">
+                        <h3>Nivea</h3>
+                        <p>Conception d'une campagne photo fictive pour une crème solaire de la marque Nivea.</p>
+                        <a class="voir-projet" href="#project1">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 2 - Rituals -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Rituels/accueil.png" alt="Rituals">
+                    </div>
+                    <div class="project-content">
+                        <h3>Rituals</h3>
+                        <p>Conception d'une campagne photo fictive pour un coffret noël de la marque Rituals.</p>
+                        <a class="voir-projet" href="#project2">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 3 - Shooting photo -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Tournage/shooting-3.jpg" alt="Shooting">
+                    </div>
+                    <div class="project-content">
+                        <h3>Shooting photo</h3>
+                        <p>Shooting photo pour le book d'un photographe</p>
+                        <a class="voir-projet" href="#project3">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 4 - Captation événementielle (avec YouTube) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Cri dans la nuit/Capture d’écran 2026-01-28 à 10.30.17.png" alt="Captation">
+                    </div>
+                    <div class="project-content">
+                        <h3>Un cri dans la nuit</h3>
+                        <p>Réalisation d'un film pour le bac</p>
+                        <a class="voir-projet" href="#project4">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 5 - Photographie de produits -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Quels du polaire/polar-3.jpg" alt="Produits">
+                    </div>
+                    <div class="project-content">
+                        <h3>Quais du polar</h3>
+                        <p>Photos prises pour le quais du polar</p>
+                        <a class="voir-projet" href="#project5">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 6 - Court-métrage (avec YouTube) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Clothilde/Capture d’écran 2026-02-03 à 08.56.38.png" alt="Court-métrage">
+                    </div>
+                    <div class="project-content">
+                        <h3>Clothilde</h3>
+                        <p>Réalisation d'un film pour le festival du film scolaire dans le cadre de ma spécialitée lycée</p>
+                        <a class="voir-projet" href="#project6">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 7 - Vlogs de voyage -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Portrait/portrait1-1.jpg" alt="Voyage">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portrait</h3>
+                        <p>Portrait photo réalisé avec mon amie</p>
+                        <a class="voir-projet" href="#project7">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 8 - Contenu réseaux sociaux -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Lingerie féline/lingerie-1.jpg" alt="Social Media">
+                    </div>
+                    <div class="project-content">
+                        <h3>Féline lingerie</h3>
+                        <p>Photos réalisées pour une boutique de lingerie</p>
+                        <a class="voir-projet" href="#project10">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 9 - Spots publicitaires -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Vacances/vacances-3.jpg" alt="Publicité">
+                    </div>
+                    <div class="project-content">
+                        <h3>Photos</h3>
+                        <p>Photos réalisées lors de mes vacances</p>
+                        <a class="voir-projet" href="#project11">Voir le projet →</a>
+                    </div>
+                </div>
+
+                <!-- Projet 10 - Dessins -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Dessins 2/dessin-8.jpg" alt="Dessins">
+                    </div>
+                    <div class="project-content">
+                        <h3>Mes dessins</h3>
+                        <p>Je teste souvent de nouvelles techniques artistiques, le dessin en fait partie.</p>
+                        <a class="voir-projet" href="#project12">Voir le projet →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGES DE PROJETS INDIVIDUELS -->
+
+    <!-- Page Projet 1 - Nivea -->
+    <div id="project1" class="project-page">
+        <div class="project-hero">
+            <img src="nivea/accueil.png" alt="Nivea">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Nivea</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Dans le cadre d'un cours de photographie, chacun devait concevoir une campagne publicitaire autour du produit que l'on voulait, avec pour enjeu la réalisation du projet gagnant. Bien que ma campagne pour Rituals n'ait pas été retenue, vous pouvez la découvrir dans la rubrique dédiée. Voici le projet gagnant de mon amie, que j'ai eu le plaisir d'accompagner dans sa réalisation.</p>
+                    <p>2025</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+
+                <div class="gallery-row">
+                    <img src="nivea/Capture d’écran 2026-02-20 à 21.16.39.png" alt="Photo 3">
+                    <img src="nivea/Capture d’écran 2026-02-20 à 21.17.12.png" alt="Photo 4">
+                    <img src="nivea/Capture d’écran 2026-02-20 à 21.17.31.png" alt="Photo 4">
+                    <img src="nivea/Capture d’écran 2026-02-20 à 21.17.55.png" alt="Photo 4">
+                    <img src="nivea 2/Capture d’écran 2026-02-20 à 21.18.13.png" alt="Photo 4">
+                    <img src="nivea 2/Capture d’écran 2026-02-20 à 21.18.35.png" alt="Photo 4">
+                    <img src="nivea 2/Capture d’écran 2026-02-20 à 21.18.52.png" alt="Photo 4">
+                    <img src="nivea 2/Capture d’écran 2026-02-20 à 21.19.08.png" alt="Photo 4">
+                    <img src="nivea 2/Capture d’écran 2026-02-20 à 21.19.25.png" alt="Photo 4">
+                    <img src="nivea 3/Capture d’écran 2026-02-20 à 21.19.47.png" alt="Photo 4">
+                    <img src="nivea 3/Capture d’écran 2026-02-20 à 21.20.05.png" alt="Photo 4">
+                    <img src="nivea 3/Capture d’écran 2026-02-20 à 21.20.24.png" alt="Photo 4">
+                    <img src="nivea 3/Capture d’écran 2026-02-20 à 21.21.02.png" alt="Photo 4">
+                    <img src="nivea 3/Capture d’écran 2026-02-20 à 21.21.16.png" alt="Photo 4">
+                    <img src="nivea 4/Capture d’écran 2026-02-20 à 21.21.30.png" alt="Photo 4">
+                    <img src="nivea 4/Capture d’écran 2026-02-20 à 21.21.44.png" alt="Photo 4">
+                    <img src="nivea 4/Capture d’écran 2026-02-20 à 21.21.57.png" alt="Photo 4">
+                    <img src="nivea 4/Capture d’écran 2026-02-20 à 21.22.13.png" alt="Photo 4">
+                    <img src="nivea 4/Capture d’écran 2026-02-20 à 21.22.27.png" alt="Photo 4">
+                    <img src="nivea 5/Capture d’écran 2026-02-20 à 21.22.43.png" alt="Photo 4">
+                    <img src="nivea 5/Capture d’écran 2026-02-20 à 21.22.55.png" alt="Photo 4">
+                    <img src="nivea 5/Capture d’écran 2026-02-20 à 21.23.13.png" alt="Photo 4">
+                    <img src="nivea 5/Capture d’écran 2026-02-20 à 21.23.28.png" alt="Photo 4">
+                    <img src="nivea 5/Capture d’écran 2026-02-20 à 21.23.45.png" alt="Photo 4">
+                    <img src="nivea 6/Capture d’écran 2026-02-20 à 21.23.59.png" alt="Photo 4">
+                    <img src="nivea 6/Capture d’écran 2026-02-20 à 21.24.11.png" alt="Photo 4">
+                    <img src="nivea 6/Capture d’écran 2026-02-20 à 21.24.25.png" alt="Photo 4">
+                    <img src="nivea 6/Capture d’écran 2026-02-20 à 21.24.39.png" alt="Photo 4">
+                    <img src="nivea 7/Capture d’écran 2026-02-20 à 21.26.01.png" alt="Photo 4">
+                    <img src="nivea 7/Capture d’écran 2026-02-20 à 21.26.21.png" alt="Photo 4">
+                    <img src="nivea 7/Capture d’écran 2026-02-20 à 21.26.35.png" alt="Photo 4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 2 - Rituals -->
+    <div id="project2" class="project-page">
+        <div class="project-hero">
+            <img src="Rituels/accueil.png" alt="Rituals">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Rituals</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Dans le cadre d'un cours de photographie, chacun devait concevoir une campagne publicitaire autour du produit que l'on voulait, avec pour enjeu la réalisation du projet gagnant. Bien que ma campagne pour Rituals n'ait pas été retenue, vous pouvez la découvrir ici.</p>
+                    <p>2025</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+
+                <div class="gallery-image">
+                    <img src="Rituels/Capture d’écran 2026-02-20 à 20.53.35.png" alt="Photo 3">
+                    <img src="Rituels/Capture d’écran 2026-02-20 à 20.53.42.png" alt="Photo 3">
+                    <img src="Rituels/Capture d’écran 2026-02-20 à 20.53.53.png" alt="Photo 3">
+                    <img src="Rituels 2/Capture d’écran 2026-02-20 à 20.54.00.png" alt="Photo 3">
+                    <img src="Rituels 2/Capture d’écran 2026-02-20 à 20.54.08.png" alt="Photo 3">
+                    <img src="Rituels 2/Capture d’écran 2026-02-20 à 20.54.15.png" alt="Photo 3">
+                    <img src="Rituels 2/Capture d’écran 2026-02-20 à 20.54.22.png" alt="Photo 3">
+                    <img src="rituels 3/Capture d’écran 2026-02-20 à 20.54.29.png" alt="Photo 3">
+                    <img src="rituels 3/Capture d’écran 2026-02-20 à 20.54.36.png" alt="Photo 3">
+                    <img src="rituels 3/Capture d’écran 2026-02-20 à 20.54.44.png" alt="Photo 3">
+                    <img src="rituels 3/Capture d’écran 2026-02-20 à 20.54.51.png" alt="Photo 3">
+                    <img src="rituels 3/Capture d’écran 2026-02-20 à 20.55.00.png" alt="Photo 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 3 - Shooting photo -->
+    <div id="project3" class="project-page">
+        <div class="project-hero">
+            <img src="Tournage/shooting-3.jpg" alt="Shooting">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Shooting photo</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p><br>En juillet 2025 j'ai eu l'opportunité de poser en tant que mannequin pour le book photo d'un photographe amateur.</p>
+                        <p><br>2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+    <!-- 2 photos côte à côte -->
+    <div class="gallery-row">
+        <img src="Tournage/shooting-1.jpg" alt="Photo 1">
+        <img src="Tournage/shooting-2.jpg" alt="Photo 2">
+    </div>
+    <!-- 2 autres photos côte à côte -->
+    <div class="gallery-row">
+        <img src="tir 2/shooting-4.jpg" alt="Photo 4">
+        <img src="tir 2/shooting-5.jpg" alt="Photo 5">
+    </div>
+ <!-- 1 photo pleine largeur -->
+    <div class="gallery-image">
+        <img src="tir 2/shooting-6.jpg" alt="Photo 3">
+    </div>
+
+</div>
+        </div>
+    </div>
+
+    <!-- Page Projet 4 - Un cri dans la nuit (AVEC YOUTUBE) -->
+    <div id="project4" class="project-page">
+        <div class="project-hero">
+            <img src="Cri dans la nuit/Capture d’écran 2026-01-28 à 10.30.17.png" alt="Captation">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Un cri dans la nuit</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Lors de ma terminale j'ai eu l'occasion de réaliser avec mes camarades un court-métrage, de l'écriture au montage. Cela a été une experience très enrichissante qui ma permise de découvrir la conception d'un film de A a Z.</p>
+                        <p>2024-2025</p>
+                 </div>
+                </div>
+            </div>
+
+            <!-- VIDÉO YOUTUBE -->
+            <div class="youtube-video">
+                <iframe src="https://www.youtube.com/embed/RX4P7pCvPP4" allowfullscreen></iframe>
+            </div>
+
+            <div class="project-gallery">
+                <div class="gallery-row">
+                    <img src="Cri dans la nuit/cri-nuit-1.jpg" alt="Photo 1">
+                    <img src="Cri dans la nuit/cri-nuit-2.jpg" alt="Photo 2">
+                    <img src="Cri dans la nuit/cri-nuit-3.jpg" alt="Photo 3">
+                    <img src="un cri dans la nuit 2/cri-nuit-4.jpg" alt="Photo 4">
+                    <img src="un cri dans la nuit 2/cri-nuit-5.jpg" alt="Photo 5">
+                    <img src="un cri dans la nuit 2/cri-nuit-6.jpg" alt="Photo 6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 5 - quais du polar -->
+    <div id="project5" class="project-page">
+        <div class="project-hero">
+            <img src="Quels du polaire/polar-3.jpg" alt="Produits">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Quais du polar</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Dans le cadre de mon service civique, j'ai été photographe pour le Quais du polar</p>
+                        <p>2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <div class="gallery-image">
+                    <img src="Quels du polaire/polar-1.jpg" alt="Photo 1">
+                </div>
+
+                <div class="gallery-row">
+                    <img src="Quels du polaire/polar-2.jpg" alt="Photo 2">
+                    <img src="Quels du polaire 2/polar-4.jpg" alt="Photo 3">
+                    <img src="Quels du polaire 2/polar-5.jpg" alt="Photo 4">
+                    <img src="Quels du polaire 2/polar-6.jpg" alt="Photo 5">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 6 - Court-métrage clothilde (AVEC YOUTUBE) -->
+    <div id="project6" class="project-page">
+        <div class="project-hero">
+            <img src="Clothilde/Capture d’écran 2026-02-03 à 08.56.38.png" alt="Court-métrage">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Clothilde</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Réalisation d'un court-métrage complet : de l'écriture du scénario à la post-production pour le festival du film scolaire.</p>
+                        <p>2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDÉO YOUTUBE -->
+            <div class="youtube-video">
+                <iframe src="https://www.youtube.com/embed/53E174q_cho" allowfullscreen></iframe>
+            </div>
+
+            <div class="project-gallery">
+                <div class="gallery-row">
+                    <img src="Clothilde/Capture d’écran 2026-02-03 à 08.56.16.png" alt="Photo 1">
+                    <img src="Clothilde/clothilde-1.jpg" alt="Photo 2">
+                    <img src="Clothilde/clothilde-2.jpg" alt="Photo 4">
+                    <img src="Clothilde 2/Capture d’écran 2026-02-20 à 18.29.23.png" alt="Photo 5">
+                    <img src="Clothilde 2/Capture d’écran 2026-02-20 à 18.30.18.png" alt="Photo 6">
+                </div>
+
+                <div class="gallery-image">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 7 - Portrait -->
+    <div id="project7" class="project-page">
+        <div class="project-hero">
+            <img src="Portrait/portrait1-1.jpg" alt="Voyage">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Portrait</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Photos réalisées avec mon amie</p>
+                        <p>2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+
+                <div class="gallery-row">
+                    <img src="Portrait/portrait1-2.jpg" alt="Photo 2">
+                    <img src="Portrait/portrait1-3.jpg" alt="Photo 3">
+                    <img src="Portrait/portrait1-4.jpg" alt="Photo 3">
+                    <img src="Portrait/portrait1-5.jpg" alt="Photo 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 8 - Féline lingerie -->
+    <div id="project10" class="project-page">
+        <div class="project-hero">
+            <img src="Lingerie féline/lingerie-1.jpg" alt="Portrait">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Féline lingerie</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Photos prises avec un canon 4000D, pour une boutique de lingerie.</p>
+                        <p>2022</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <div class="gallery-row">
+                    <img src="Lingerie féline/lingerie-2.jpg" alt="Photo 1">
+                    <img src="Lingerie féline/lingerie-3.jpg" alt="Photo 2">
+                    <img src="Lingerie féline 2/lingerie-4.jpg" alt="Photo 2">
+                    <img src="Lingerie féline 2/lingerie-5.jpg" alt="Photo 2">
+                    <img src="Lingerie féline 2/lingerie-6.jpg" alt="Photo 2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 9 - Photos -->
+    <div id="project11" class="project-page">
+        <div class="project-hero">
+            <img src="Vacances/vacances-3.jpg" alt="Spontané">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Photos</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Photos prises avec un canon 4000D, un G7X ou un iPhone 12 lors de mes vacances.</p>
+                    </div>
+                </div>
+            </div>
+
+                <div class="gallery-row">
+                    <img src="Vacances/vacances-1.jpg" alt="Photo 1">
+                    <img src="Vacances/vacances-2.jpg" alt="Photo 2">
+                    <img src="Vacances/vacances-5.jpg" alt="Photo 3">
+                    <img src="Vacances 2/vacances-13.jpg" alt="Photo 3">
+                    <img src="Vacances 2/vacances-12.jpg" alt="Photo 3">
+                    <img src="Vacances 2/vacances-7.jpg" alt="Photo 3">
+                    <img src="Vacances 2/vacances-8.jpg" alt="Photo 3">
+                    <img src="Vacances 2/vacances-11.jpg" alt="Photo 3">
+
+                <div class="gallery-image"> 
+                     <img src="Vacances/vacances-6.jpg" alt="Photo 3">
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Projet 10 - Mes dessins -->
+    <div id="project12" class="project-page">
+        <div class="project-hero">
+            <img src="Dessins 2/dessin-8.jpg" alt="Dessins">
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="project-detail-header">
+                <h1>Dessins</h1>
+                
+                <div class="project-meta">
+                    <div>
+                        <h3>Description</h3>
+                        <p>Je teste souvent de nouvelles techniques artistiques, le dessin en fait partie. Les dessins sont réalisés au crayon à papier, à l'aquarelle, aux stylos ou aux crayons de couleurs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <div class="gallery-image">
+                    
+                </div>
+
+                <div class="gallery-row">
+                    <img src="Dessins/dessin-3.jpg" alt="Dessin 2">
+                    <img src="Dessins/dessin-2.jpg" alt="Dessin 3">
+                    <img src="Dessins/dessin-1.jpg" alt="Dessin 1">
+                    <img src="Dessins 2/dessin-6.jpg" alt="Dessin 1">
+                    <img src="Dessins 2/dessin-5.jpg" alt="Dessin 4">
+                    <img src="Dessins 2/dessin-7.jpg" alt="Dessin 4">
+                    <img src="Dessins/dessin-4.jpg" alt="Dessin 4">
+                </div>
+
+                <div class="gallery-image">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compétences & Parcours -->
+    <section id="competences">
+        <div class="container">
+            <h2 class="section-title">Compétences & Parcours</h2>
+            <div class="skills-parcours">
+                <!-- Compétences -->
+                <div class="skills-section">
+                    <h3>Mes Compétences</h3>
+                    
+                    <div class="skill-category">
+                        <h4>Compétences</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Montage vidéo</span>
+                            <span class="skill-tag">Créativité</span>
+                            <span class="skill-tag">Photographie</span>
+                            <span class="skill-tag">Décor</span>
+                            <span class="skill-tag">Codage</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Diplômes</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Baccalauréat</span>
+                            <span class="skill-tag">Permis B</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Centre d'intérêt</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Photo</span>
+                            <span class="skill-tag">Cinéma</span>
+                            <span class="skill-tag">Musique</span>
+                            <span class="skill-tag">Danse</span>
+                            <span class="skill-tag">Dessin</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Informatique</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">Capcut</span>
+                            <span class="skill-tag">Pack office</span>
+                            <span class="skill-tag">Canva</span>
+                            <span class="skill-tag">Première pro</span>
+                            <span class="skill-tag">Visual Studio Code</span>
+                            <span class="skill-tag">IA : Chatgpt, claude</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parcours -->
+                <div class="parcours-section">
+                    <h3>Mon Parcours</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Programmatrice</h4>
+                            <p class="period">Novembre 2025</p>
+                            <p>Pendant 1 mois j'ai accompagné une chanteuse émergente, Charlie OZ. En tant que programmatrice, j'ai contacté les festivals et les mairies et produit une vidéo de présentation.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>Animatrice</h4>
+                            <p class="period">2024-2026</p>
+                            <p>Depuis 2 ans, je suis animatrice en stage sportif et centre aéré. J'encadre et crée les activités.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>Assistante administrative</h4>
+                            <p class="period">2024</p>
+                            <p>Durant 6 mois j'ai accompagné un cabinet de ressource humaine dans la mise en forme de documents commerciaux.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i>📧</i>
+                        <p><a href="calissia.blanc@gmail.com"><span class="__cf_email__" data-cfemail="e281838e8b91918b83808e838c81a2858f838b8ecc818d8f"><span class="__cf_email__" data-cfemail="0b686a67627878626a2569676a65684b6c666a626725686466">[email&#160;protected]</span></span></a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i>📱</i>
+                        <p>0633422636</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <p>Lyon, France</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>💼</i>
+                        <p><a href="https://www.linkedin.com/in/calissia-blanc-1b8556339/" target="_blank">voir mon LinkedIn</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mon Portfolio. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Fonction pour afficher un projet spécifique
+        function showProject(projectId) {
+            // Masquer toutes les pages de projet
+            document.querySelectorAll('.project-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Afficher la page du projet sélectionné
+            document.getElementById(projectId).classList.add('active');
+            
+            // Ajouter une classe au body pour masquer les autres sections
+            document.body.classList.add('viewing-project');
+            
+            // Afficher le bouton retour
+            document.getElementById('backButton').style.display = 'block';
+            
+            // Scroll en haut
+            window.scrollTo(0, 0);
+        }
+
+        // Fonction pour retourner à l'accueil
+        function showHome() {
+            // Masquer toutes les pages de projet
+            document.querySelectorAll('.project-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Retirer la classe du body
+            document.body.classList.remove('viewing-project');
+            
+            // Cacher le bouton retour
+            document.getElementById('backButton').style.display = 'none';
+            
+            // Scroll en haut
+            window.scrollTo(0, 0);
+        }
+
+        // Fonction pour scroll vers une section
+        function scrollToSection(sectionId) {
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100);
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            root
